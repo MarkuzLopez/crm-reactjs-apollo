@@ -1,7 +1,11 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { Clientes_Query } from '../queries';
 import { Link } from 'react-router-dom';
+import { Eliminar_Cliente } from '../mutations';
+
+import Swal from 'sweetalert2'
+
 
 const  Clientes = () => (
     // TODO se pasara el pollInterval (Query) para que tenga la senssacion de que sea en tiempo real , y se agregaran doss parametros en el callback
@@ -21,6 +25,35 @@ const  Clientes = () => (
                                                 {cliente.nombre} {cliente.apellidos}
                                         </div>
                                         <div className="col-md-4 d-flex justify-content-end">
+                                            <Mutation mutation={Eliminar_Cliente} >
+                                                { eliminarCliente => (
+                                                <button className="btn btn-danger d-block d-md-inline-block mr-2"
+                                                onClick={ () => {
+                                                    Swal.fire({
+                                                        title: '¿Estas Seguro?',
+                                                        text: "Puedes eliminarlo, pero no habra marcha atras!",
+                                                        type: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Si, Eliminarlo!!'
+                                                      }).then((result) => {
+                                                        if (result.value) {
+                                                            var id =  cliente.id;
+                                                            eliminarCliente({
+                                                                variables: {id}
+                                                            })                                                            
+                                                          Swal.fire(
+                                                            'Eliminado Correctaamente!',
+                                                            '',
+                                                            'success'
+                                                          )
+                                                        }
+                                                      })
+                                                }}
+                                                >&times; Borrar </button>  
+                                                )}    
+                                            </Mutation> 
                                             <Link className="btn btn-success d-block" to={`/cliente/editar/${cliente.id}`} >Editar Cliente</Link>                                            
                                         </div>
                                     </div>

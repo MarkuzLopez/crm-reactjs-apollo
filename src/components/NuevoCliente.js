@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { Crear_Cliente } from '../mutations';
 import { Mutation } from 'react-apollo';
 
+import Swal from 'sweetalert2';
+
 class NuevoCliente extends Component {
 
     // crear el estado del cliente el modelo
@@ -100,7 +102,7 @@ class NuevoCliente extends Component {
                                 error: false
                             });
 
-                            const input =  {
+                            const input = {
                                 nombre,
                                 apellidos,
                                 empresa,
@@ -111,8 +113,9 @@ class NuevoCliente extends Component {
                             /// funcion del mutation para crear Cliente
                             crearCliente({ 
                                 variables: {input}
-                            });
+                            });                            
                             //this.props.history.push('/');
+                            Swal.fire('Datos guardados correctamente', '', 'success');
                         }}
                     >
                         

@@ -4,6 +4,8 @@ import { Actualizar_Cliente } from '../mutations';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 
+import Swal from 'sweetalert2';
+
 class FormularioEditar extends Component {
     
     state =  { 
@@ -12,6 +14,7 @@ class FormularioEditar extends Component {
     }
 
     /// paraa realizaar el formulario dinamico
+    // http://localhost:4200/#/admin/warrantyValidator/6tVaL8RlJWDnH4um5TvJ
     nuevoCampo = () => { 
         this.setState({ 
             emails: this.state.emails.concat([{ email: '' }])
@@ -76,7 +79,7 @@ class FormularioEditar extends Component {
                             actualizarCliente({
                                 variables: {input}
                             });
-                            console.log('ok');
+                            Swal.fire('¡Datos Actualizado, correctamente!', '', 'success');
                         }}
                     >
                     <div className="form-row">
@@ -148,7 +151,25 @@ class FormularioEditar extends Component {
                                         <button
                                             className="btn btn-danger"
                                             type="button"
-                                            onClick={() => this.quitarCampo(index)}>
+                                            onClick={() => 
+                                                Swal.fire({
+                                                    title: '¿Estas Seguro de Eliminarlo?',                                                    
+                                                    type: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Si, eliminar esto!'
+                                                  }).then((result) => {
+                                                    if (result.value) {
+                                                     this.quitarCampo(index);
+                                                      Swal.fire(
+                                                        'Eliminado correctamente!',
+                                                        '',
+                                                        'success'
+                                                      )
+                                                    }
+                                                  })                                                                                                  
+                                            }>
                                             &times; Eliminar
                                 </button>
                                     </div>
