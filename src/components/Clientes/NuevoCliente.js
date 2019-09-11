@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // importacion de apollo y del schema y mutation 
-import { Crear_Cliente } from '../mutations';
+import { Crear_Cliente } from '../../mutations';
 import { Mutation } from 'react-apollo';
 
 import Swal from 'sweetalert2';
@@ -178,18 +178,7 @@ class NuevoCliente extends Component {
                                 <button onClick={this.nuevoEmail} type="button" className="btn btn-primary">
                                     Agregar Email
                                 </button>
-                            </div>
-                            {/* <div className="form-group col-md-6">
-                                <label>Email</label>
-                                <input 
-                                type="email" 
-                                className="form-control" 
-                                placeholder="Email"
-                                name="email"
-                                value={email}
-                                onChange={this.leerDatos}
-                                 />
-                            </div> */}
+                            </div>                            
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">

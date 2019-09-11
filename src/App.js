@@ -7,10 +7,16 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // importaacion de componentes
-import Header from './components/Header';
-import Clientes from './components/Clientes';
-import EditarCliente from './components/EditarCliente';
-import NuevoCliente from './components/NuevoCliente';
+import Header from './components/shared/Header';
+import Clientes from './components/Clientes/Clientes';
+import EditarCliente from './components/Clientes/EditarCliente';
+import NuevoCliente from './components/Clientes/NuevoCliente';
+import NuevoProducto from './components/Productos/NuevoProducto';
+import Productos from './components/Productos/Productos';
+import EditarProducto from './components/Productos/EditarProducto';
+
+// importacion de productos 
+
 
 // instaciar el servidor de apollo con el front
 const client = new ApolloClient({
@@ -36,9 +42,13 @@ const client = new ApolloClient({
             <Header />
             <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Clientes}  />
-                  <Route exact path="/cliente/editar/:id" component={EditarCliente} />
-                  <Route exact path="/cliente/nuevo" component={NuevoCliente} />
+                  <Route exact path="/clientes" component={Clientes}  />
+                  <Route exact path="/clientes/editar/:id" component={EditarCliente} />
+                  <Route exact path="/clientes/nuevo" component={NuevoCliente} />
+
+                  <Route exact path="/productos/nuevo" component={NuevoProducto} />
+                  <Route exact path="/productos/:id" component={EditarProducto} />
+                  <Route exact path="/productos" component={ Productos } />
                 </Switch>                
             </div>
           </React.Fragment>

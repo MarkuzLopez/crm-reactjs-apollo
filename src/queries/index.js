@@ -1,14 +1,29 @@
 import gql from "graphql-tag";
 
-export const Clientes_Query = gql `{ 
-	getClientes{
-    id
-    nombre
-    apellidos
-    edad
-    empresa
-  }
-}`;
+// export const Clientes_Query = gql `{ 
+// 	getClientes{
+//     id
+//     nombre
+//     apellidos
+//     edad
+//     empresa
+//   }
+ /// instalarr dragula 
+//  video https://www.youtube.com/watch?v=1TEeCJwXmVE
+/// https://stackblitz.com/edit/ng2-dragula-base?file=src%2Fapp%2Fapp.component.ts
+//   totalClientes
+// }`;
+export const Clientes_Query = gql `
+   query getClientes($limite: Int, $offset: Int){
+     getClientes(limite: $limite, offset: $offset) {
+       id
+       nombre
+       apellidos
+       empresa
+     }
+     totalClientes
+   }
+`;
 
 
 export const Cliente_Query = gql `
@@ -24,4 +39,25 @@ export const Cliente_Query = gql `
         email
       }
     }
+}`;
+
+export const Products_Query = gql `
+ query obtainProducts($limite: Int, $offset: Int) { 
+	obtainProducts(limite: $limite, offset: $offset) { 
+  	id
+    nombre
+    precio
+    stock
+  }
+  totalProducts
+} `;
+
+
+export const getProducto = gql `
+query obtenerProducto($id: ID) { 
+	getProduct(id: $id) { 
+  	nombre
+    precio
+    stock
+  }
 }`;

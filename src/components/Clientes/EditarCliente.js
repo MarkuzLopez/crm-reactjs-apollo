@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // importacion de apollo y las consultaa 
 import { Query } from 'react-apollo';
-import { Cliente_Query } from '../queries';
+import { Cliente_Query } from '../../queries';
 import FormularioEditar from './FormularioEditar';
 
 class EditarCliente extends Component { 
@@ -18,9 +18,7 @@ class EditarCliente extends Component {
                     {({loading, error, data } ) => {
                         if(loading) return 'Caargando...';
                         if(error) return `Error ${error.message}`;                        
-                       ///s console.log(data);
-                       console.log(this.props);
-                       
+                       ///s console.log(data);                       
                         return(
                             <FormularioEditar 
                               cliente={data.getCliente}                              

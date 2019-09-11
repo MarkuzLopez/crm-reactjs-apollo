@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Actualizar_Cliente } from '../mutations';
+import { Actualizar_Cliente } from '../../mutations';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 class FormularioEditar extends Component {
     
-    state =  { 
+    state = { 
         cliente: this.props.cliente,
         emails: this.props.cliente.emails
     }
@@ -55,7 +55,7 @@ class FormularioEditar extends Component {
                 {/* <h2 className="text-center">Formulario Editar</h2> */}
                 <Mutation
                     mutation={Actualizar_Cliente}  
-                    onCompleted={ () => this.props.history.push('/') }
+                    onCompleted={ () => this.props.history.push('/clientes') }
                 >
                     { actualizarCliente => (
                     <form className="col-md-8 m-3" 
