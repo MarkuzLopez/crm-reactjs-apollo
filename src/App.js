@@ -14,6 +14,7 @@ import NuevoCliente from './components/Clientes/NuevoCliente';
 import NuevoProducto from './components/Productos/NuevoProducto';
 import Productos from './components/Productos/Productos';
 import EditarProducto from './components/Productos/EditarProducto';
+import NuevoPedido from './components/Pedidos/NuevoPedido';
 
 // importacion de productos 
 
@@ -45,10 +46,12 @@ const client = new ApolloClient({
                   <Route exact path="/clientes" component={Clientes}  />
                   <Route exact path="/clientes/editar/:id" component={EditarCliente} />
                   <Route exact path="/clientes/nuevo" component={NuevoCliente} />
-
+ 
                   <Route exact path="/productos/nuevo" component={NuevoProducto} />
                   <Route exact path="/productos/:id" component={EditarProducto} />
                   <Route exact path="/productos" component={ Productos } />
+
+                  <Route exact path="/pedidos/nuevo/:id" component={NuevoPedido} />
                 </Switch>                
             </div>
           </React.Fragment>
