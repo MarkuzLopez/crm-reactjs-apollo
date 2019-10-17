@@ -42,8 +42,8 @@ export const Cliente_Query = gql `
 }`;
 
 export const Products_Query = gql `
- query obtainProducts($limite: Int, $offset: Int) { 
-	obtainProducts(limite: $limite, offset: $offset) { 
+ query obtainProducts($limite: Int, $offset: Int, $stock: Boolean ) { 
+	obtainProducts(limite: $limite, offset: $offset, stock: $stock) { 
   	id
     nombre
     precio

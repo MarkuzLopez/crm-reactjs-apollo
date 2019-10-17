@@ -20,7 +20,7 @@ class Productos extends Component  {
         }
     }
 
-    limite = 2;
+    limite = 4;
 
     paginaAnterior = () => {
         this.setState({ 

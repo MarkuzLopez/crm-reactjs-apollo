@@ -51,3 +51,33 @@ export const update_Product = gql `
       stock
     }
 }`;
+
+// export const nuevo_Pedido = gql `
+//   mutation nuevoPedido($input: PedidoInput) {
+//   nuevoPedido(input: $input) {
+//      id
+//   }
+// }`;
+
+export const Nuevo_Pedido = gql `
+mutation nuevoPedido($input: PedidoInput ){
+  nuevoPedido(input: $input) {
+    total
+    fecha
+    pedido {
+      cantidad
+      id
+    }
+  }
+}`;
+
+// mutation nuevoPedido($input: PedidoInput ){
+//   nuevoPedido(input: $input) {
+//     total
+//     fecha
+//     pedido {
+//       cantidad
+//       id
+//     }
+//   }
+// }

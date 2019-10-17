@@ -17,7 +17,7 @@ class NuevoPedido extends Component{
                         <DatosClientes id={id} />
                     </div>
                     <div className="col-md-9" >
-                         <Query query={Products_Query} >
+                         <Query query={Products_Query} variables={{stock: true}} >
                              {({loading, error, data }) => { 
                                  if(loading) return 'Cargando...';
                                  if(error) return `Eerror ${error}`;
