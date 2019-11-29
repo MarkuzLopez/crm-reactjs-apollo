@@ -69,3 +69,16 @@ export const Actualizar_Estado = gql `
 mutation actualizarEstado($input : PedidoInput) {
   actualizarEstado(input: $input) 
 }`;
+
+export const Create_User = gql `
+mutation crearUsuario($usuario: String!, $nombre: String!, $password: String!, $rol: String!) {
+  crearUsuario(usuario: $usuario, nombre: $nombre, password: $password, rol: $rol)
+}`;
+
+
+export const Usuario_Aautenticar = gql`
+ mutation autenticarUsuario($usuario: String!, $password: String!) {
+  autenticarUsuario(usuario: $usuario, password: $password){ 
+  	token
+  }
+}`;
