@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // importacion de apollo y del schema y mutation 
 import { Crear_Cliente } from '../../mutations';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom'
 
 import Swal from 'sweetalert2';
 
@@ -66,6 +67,9 @@ class NuevoCliente extends Component {
     }
    
     render() {
+        
+         const idVendedor = this.props.session.obtenerUsuario.id;
+        
         const { nombre, apellidos, empresa, edad, tipo } =  this.state.cliente; 
         //7 manejo de errores en react  
         const { error } =  this.state;
@@ -108,7 +112,8 @@ class NuevoCliente extends Component {
                                 empresa,
                                 emails,
                                 edad: Number(edad),
-                                tipo, 
+                                tipo,
+                                vendedor: idVendedor
                             };
                             /// funcion del mutation para crear Cliente
                             crearCliente({ 
@@ -211,4 +216,4 @@ class NuevoCliente extends Component {
     }
 }
 
-export default NuevoCliente;
+export default withRouter(NuevoCliente);

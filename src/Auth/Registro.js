@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { Create_User } from '../mutations';
 import Error from '../components/shared/Error';
 
@@ -62,10 +62,16 @@ class Registro extends Component {
     }
 
     render() {
+        // console.log(this.props.session.obtenerUsuario.rol);
+        // bloquear las rutas 
+        const rolUser = this.props.session.obtenerUsuario.rol;
+        const redireccionar = (rolUser !== 'ADMINISTRADOR') ? <Redirect to="/clientes" /> : '';
+        
         // realizar un destructuración de los datos 
         const { usuario, password, repetirPassword, nombre, rol  } = this.state.user;
         return (
             <React.Fragment>
+                {redireccionar}
                 <h1 className="text-center mb-5">Nuevo Usuario</h1>
                 <div className="row  justify-content-center">
                     <Mutation 

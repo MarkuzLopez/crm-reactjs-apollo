@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CerrarSession from './CerrarSession';
+import BotonRegistro from './BotonReegistro';
 
 const Header = ({session}) => {
-    console.log(session);
-     let barra =  (session.obtenerUsuario) ? <NavegacionAutenticados /> : <NavegacionNoAutenticados />
+    // console.log(session);
+     let barra =  (session.obtenerUsuario) ? <NavegacionAutenticados session={session} /> : <NavegacionNoAutenticados />
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between d-flex mb-4">
             <div className="container">         
@@ -20,7 +21,7 @@ const NavegacionNoAutenticados = () => (
 
 );
 
-const NavegacionAutenticados = () => (
+const NavegacionAutenticados = (session) => (
 
     <React.Fragment>
         <Link className="navbar-brand text-light font-weight-bold" to={"/"} >CRM</Link>
@@ -53,9 +54,13 @@ const NavegacionAutenticados = () => (
                         </Link>
                         <Link to='/productos/nuevo' className="dropdown-item" >
                             Nuevo Productos
-                        </Link>                        
+                        </Link>                                      
                     </div>
                 </li>
+                <li>
+                     <BotonRegistro session={session} />
+                </li>
+               
                 <li>
                     <CerrarSession />
                 </li>

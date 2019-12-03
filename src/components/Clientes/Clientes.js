@@ -36,10 +36,18 @@ class Clientes extends  Component {
         })
     }
     render() {
-        const {actual} = this.state.paginador;        
+        const {actual} = this.state.paginador;
+        // este pequeño codigo verifica que seaa un vendedor  
+        let idVendedor ; 
+        const { rol } =  this.props.session.obtenerUsuario;
+        if( rol === 'VENDEDOR') { 
+            idVendedor = this.props.session.obtenerUsuario.id;
+        } else { 
+            idVendedor = '';
+        }
         return (
             // TODO se pasara el pollInterval (Query) para que tenga la senssacion de que sea en tiempo real , y se agregaran doss parametros en el callback
-            <Query query={Clientes_Query} pollInterval={800} variables={{limite: this.limite, offset: this.state.paginador.offset}} >
+            <Query query={Clientes_Query} pollInterval={800} variables={{limite: this.limite, offset: this.state.paginador.offset, vendedor: idVendedor}} >
                 {({ loading, error, data, startPolling, stopPolling }) => {
                     if (loading) return "Cargando..."
                     if (error) return `Error: ${error.message}`                    
@@ -93,7 +101,7 @@ class Clientes extends  Component {
                             </ul>
                             <Paginador 
                                 actual={actual}
-                                totalClientes={data.totalClientes}
+                                total={data.totalClientes}
                                 limite={this.limite}
                                 paginaAnterior={this.paginaAnterior}
                                 paginaSiguiente={this.paginaSiguiente}

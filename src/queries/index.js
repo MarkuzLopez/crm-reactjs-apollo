@@ -14,14 +14,15 @@ import gql from "graphql-tag";
 //   totalClientes
 // }`;
 export const Clientes_Query = gql `
-   query getClientes($limite: Int, $offset: Int){
-     getClientes(limite: $limite, offset: $offset) {
+   query getClientes($limite: Int, $offset: Int, $vendedor: String){
+     getClientes(limite: $limite, offset: $offset, vendedor:  $vendedor) {
        id
        nombre
        apellidos
        empresa
      }
-     totalClientes
+     totalClientes(vendedor: $vendedor)
+
    }
 `;
 

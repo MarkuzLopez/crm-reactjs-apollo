@@ -104,6 +104,7 @@ class ContenidoPedido extends Component {
                   productos={this.state.producto}
                   total={this.state.total}
                   idCliente={this.props.id}
+                  idVendedor={this.props.idVendedor}
                 />
             </React.Fragment>
         );

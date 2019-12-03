@@ -3,13 +3,15 @@ import DatosClientes from './DatosCliente';
 import { Query } from 'react-apollo';
 import { Products_Query } from '../../queries';
 import ContenidoPedido from './ContenidoPedido';
+import { withRouter } from 'react-router-dom';
 
 class NuevoPedido extends Component{ 
     render() {        
         const { id } = this.props.match.params;
-       // console.log(id);
         
-        return(
+        const idVendedor = this.props.session.obtenerUsuario.id;
+       console.log(idVendedor); 
+       return(
             <React.Fragment>
                 <h1 className="text-center mb-5">Nuevo Pedido</h1>
                 <div className="row">
@@ -27,6 +29,7 @@ class NuevoPedido extends Component{
                                      <ContenidoPedido  
                                         productos={data.obtainProducts}
                                         id={id}
+                                        idVendedor={idVendedor}
                                      />
                                  )
                              }}
@@ -39,4 +42,4 @@ class NuevoPedido extends Component{
     }
 }
 
-export default NuevoPedido;
+export default withRouter (NuevoPedido);
